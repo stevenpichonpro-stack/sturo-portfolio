@@ -1,5 +1,5 @@
 /* =========================================================
-   Sturo â€” Portfolio styles
+   Sturo — Portfolio styles
    Dark, sober, editorial. Inspiration: MillionViewClub.
    ========================================================= */
 
@@ -240,13 +240,16 @@ a { color: inherit; text-decoration: none; }
 }
 .project__head {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 24px;
   margin-bottom: 32px;
   flex-wrap: wrap;
 }
 .project__name {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
   font-family: var(--sans);
   font-size: clamp(28px, 3.2vw, 44px);
   font-weight: 400;
@@ -254,10 +257,33 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.1;
 }
 .project__name .serif { font-size: 1em; }
+.project__logo {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  flex: 0 0 auto;
+}
+.project__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  text-align: right;
+}
 .project__role {
   color: var(--text-dim);
   font-size: 14px;
   letter-spacing: 0.02em;
+  margin: 0;
+}
+.project__scope {
+  color: var(--gold);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  opacity: 0.9;
+  margin: 0;
 }
 .project__embeds {
   display: grid;
@@ -327,6 +353,98 @@ a { color: inherit; text-decoration: none; }
   text-align: center;
 }
 
+/* ---------- MODAL (LinkedIn) ---------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.modal.is-open { display: flex; }
+.modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  animation: fadeIn 0.3s ease;
+}
+.modal__panel {
+  position: relative;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 56px 44px 44px;
+  max-width: 520px;
+  width: 100%;
+  animation: modalIn 0.35s cubic-bezier(.2, 0, .1, 1);
+}
+.modal__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 38px;
+  height: 38px;
+  border: none;
+  background: transparent;
+  color: var(--text-dim);
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.modal__close:hover { background: var(--line); color: var(--gold); }
+.modal__kicker {
+  position: relative;
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  padding-left: 28px;
+}
+.modal__kicker::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 20px;
+  height: 1px;
+  background: var(--gold);
+  transform: translateY(-50%);
+}
+.modal__name {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(36px, 6vw, 48px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.modal__title {
+  color: var(--text-dim);
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  margin-bottom: 24px;
+}
+.modal__bio {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text);
+  margin-bottom: 32px;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(14px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+body.modal-open { overflow: hidden; }
+
 /* ---------- REVEAL ON SCROLL ---------- */
 .reveal {
   opacity: 0;
@@ -339,14 +457,30 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* =========================================================
-   MOBILE (â‰¤ 720px) â€” carrousel horizontal pour les shorts
+   MOBILE (≤ 720px) — carrousel horizontal pour les shorts
    ========================================================= */
 @media (max-width: 720px) {
   /* Resserre le rythme entre projets */
   .projects { gap: 56px; }
   .project { padding-top: 32px; }
-  .project__head { margin-bottom: 24px; gap: 8px; }
+  .project__head {
+    margin-bottom: 24px;
+    gap: 12px;
+    align-items: flex-start;
+  }
   .project__role { font-size: 13px; }
+  .project__scope { font-size: 11px; }
+  .project__logo { width: 40px; height: 40px; }
+  .project__name { gap: 12px; }
+  .project__meta {
+    align-items: flex-start;
+    text-align: left;
+    width: 100%;
+  }
+
+  /* Modale pleine largeur sur mobile */
+  .modal { padding: 16px; }
+  .modal__panel { padding: 52px 28px 28px; border-radius: 16px; }
 
   /* Carrousel horizontal pour les shorts */
   .project__embeds:not([data-layout="long"]) {
@@ -358,12 +492,12 @@ a { color: inherit; text-decoration: none; }
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    /* Permet Ã  la 1re carte de toucher le bord gauche
-       et laisse respirer la derniÃ¨re sur la droite */
+    /* Permet à la 1re carte de toucher le bord gauche
+       et laisse respirer la dernière sur la droite */
     margin-inline: calc(var(--pad-x) * -1);
     padding: 4px var(--pad-x);
     scroll-padding-inline: var(--pad-x);
-    /* Masque le dÃ©gradÃ© de la derniÃ¨re carte pour un effet doux */
+    /* Masque le dégradé de la dernière carte pour un effet doux */
     mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 32px), transparent 100%);
     -webkit-mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 32px), transparent 100%);
   }
@@ -376,7 +510,7 @@ a { color: inherit; text-decoration: none; }
     scroll-snap-align: start;
   }
 
-  /* VidÃ©o longue reste en pleine largeur */
+  /* Vidéo longue reste en pleine largeur */
   .project__embeds[data-layout="long"] {
     grid-template-columns: 1fr;
     max-width: 100%;
@@ -391,7 +525,7 @@ a { color: inherit; text-decoration: none; }
   .hero__cta { width: 100%; }
   .hero__cta .btn { flex: 1; text-align: center; }
 
-  /* Section label un chouÃ¯a plus petite */
+  /* Section label un chouïa plus petite */
   .section__label {
     font-size: 11px;
     padding-left: 22px;

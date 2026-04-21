@@ -64,6 +64,33 @@ function buildEmbeds() {
 }
 buildEmbeds();
 
+// ---------- Modale LinkedIn ----------
+const linkedinModal = document.getElementById("linkedinModal");
+const openLinkedinBtn = document.getElementById("openLinkedin");
+
+function openModal() {
+  linkedinModal.classList.add("is-open");
+  linkedinModal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+}
+function closeModal() {
+  linkedinModal.classList.remove("is-open");
+  linkedinModal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("modal-open");
+}
+
+if (openLinkedinBtn && linkedinModal) {
+  openLinkedinBtn.addEventListener("click", openModal);
+  linkedinModal.querySelectorAll("[data-close]").forEach((el) => {
+    el.addEventListener("click", closeModal);
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && linkedinModal.classList.contains("is-open")) {
+      closeModal();
+    }
+  });
+}
+
 // ---------- Reveal on scroll ----------
 const revealTargets = document.querySelectorAll(".hero__title, .hero__sub, .hero__cta, .about__title, .about__grid, .work__title, .project, .contact__title, .contact__sub, .contact__links");
 revealTargets.forEach((el) => el.classList.add("reveal"));

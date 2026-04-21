@@ -29,7 +29,7 @@
       <span class="hero__serif">La meilleure idée</span><br />
       <span class="hero__serif hero__serif--italic">n'est pas encore née.</span>
     </h1>
-    <p class="hero__sub">Auteur &amp; Directeur artistique. Je souhaite créer les plus grands contenus en France.</p>
+    <p class="hero__sub">Auteur &amp; Directeur artistique. Je souhaite créer les plus grands contenus sur YouTube en France.</p>
     <div class="hero__cta">
       <a href="#work" class="btn btn--primary">Voir les réalisations</a>
       <a href="#contact" class="btn btn--ghost">Me contacter</a>
@@ -39,17 +39,19 @@
   <!-- WORK -->
   <section id="work" class="work">
     <p class="section__label">Réalisations</p>
-    <h2 class="work__title">
-      <span class="serif">Sélection.</span>
-    </h2>
 
     <div class="projects">
 
       <!-- AMIXEM -->
       <article class="project">
         <header class="project__head">
-          <h3 class="project__name"><span class="serif">Amixem</span></h3>
-          <p class="project__role">Direction artistique · YouTube Shorts · 8 mois</p>
+          <h3 class="project__name">
+            <img class="project__logo" src="images/amixem.jpg" alt="" />
+            <span class="serif">Amixem</span>
+          </h3>
+          <div class="project__meta">
+            <p class="project__role">Direction artistique · YouTube Shorts · 8 mois</p>
+          </div>
         </header>
         <div class="project__embeds" data-project="amixem">
           <!-- Embeds injectés par script.js -->
@@ -59,8 +61,13 @@
       <!-- XELITO BELEC -->
       <article class="project">
         <header class="project__head">
-          <h3 class="project__name"><span class="serif">Xélito Beleck</span></h3>
-          <p class="project__role">Co-auteur</p>
+          <h3 class="project__name">
+            <img class="project__logo" src="images/xelito.jpg" alt="" />
+            <span class="serif">Xélito Beleck</span>
+          </h3>
+          <div class="project__meta">
+            <p class="project__role">Co-auteur</p>
+          </div>
         </header>
         <div class="project__embeds" data-project="xelito">
         </div>
@@ -69,8 +76,14 @@
       <!-- CUBE NETWORK -->
       <article class="project">
         <header class="project__head">
-          <h3 class="project__name"><span class="serif">Cube Network</span></h3>
-          <p class="project__role">Lead projet · « Peut-on réussir en France en 2026 ? »</p>
+          <h3 class="project__name">
+            <img class="project__logo" src="images/cube.jpg" alt="" />
+            <span class="serif">Cube Network</span>
+          </h3>
+          <div class="project__meta">
+            <p class="project__role">Lead projet sur « Peut-on réussir en France en 2026 ? »</p>
+            <p class="project__scope">Idée · Sujet · Invités · Lieu · Titres · Miniatures · Introduction</p>
+          </div>
         </header>
         <div class="project__embeds" data-project="cube">
         </div>
@@ -79,16 +92,26 @@
       <!-- MAISON DES CREATEURS -->
       <article class="project">
         <header class="project__head">
-          <h3 class="project__name"><span class="serif">Maison des Créateurs</span></h3>
-          <p class="project__role">Collaborateur · Écriture &amp; direction artistique</p>
+          <h3 class="project__name">
+            <img class="project__logo" src="images/maison.jpg" alt="" />
+            <span class="serif">Maison des Créateurs</span>
+          </h3>
+          <div class="project__meta">
+            <p class="project__role">Collaborateur</p>
+          </div>
         </header>
       </article>
 
       <!-- VICTOR HABCHY -->
       <article class="project">
         <header class="project__head">
-          <h3 class="project__name"><span class="serif">Victor Habchy</span></h3>
-          <p class="project__role">Collaborateur · Écriture &amp; direction artistique</p>
+          <h3 class="project__name">
+            <img class="project__logo" src="images/victor.jpg" alt="" />
+            <span class="serif">Victor Habchy</span>
+          </h3>
+          <div class="project__meta">
+            <p class="project__role">Collaborateur</p>
+          </div>
         </header>
       </article>
 
@@ -106,7 +129,7 @@
         <p>Un rire, une émotion, une idée qu'on n'avait pas avant. C'est ce que j'essaie de transmettre à travers les contenus que je crée ou auxquels je participe. Qu'on en ressorte grandi, avec quelque chose de positif.</p>
       </div>
       <div class="about__col">
-        <p>Je cherche des idées en permanence. J'en note entre dix et cent par jour, pour arriver aux meilleures vidéos possibles. Ma matière première, c'est la veille : cinéma, littérature, YouTube, réseaux.</p>
+        <p>Je cherche des idées en permanence. J'en note entre dix et cent par jour, pour arriver aux meilleures vidéos possibles.</p>
       </div>
     </div>
   </section>
@@ -120,7 +143,7 @@
     <p class="contact__sub">La meilleure idée n'est pas encore née. On peut commencer par en parler.</p>
     <div class="contact__links">
       <a href="mailto:stevenpichonpro@gmail.com" class="btn btn--primary">stevenpichonpro@gmail.com</a>
-      <a href="https://www.linkedin.com/in/steven-pichon-48a00a1bb/" target="_blank" rel="noopener" class="btn btn--ghost">LinkedIn</a>
+      <button type="button" class="btn btn--ghost" id="openLinkedin" aria-haspopup="dialog" aria-controls="linkedinModal">LinkedIn</button>
     </div>
   </section>
 
@@ -128,6 +151,19 @@
   <footer class="footer">
     <p>© <span id="year"></span> Steven Pichon — Sturo.</p>
   </footer>
+
+  <!-- MODAL LINKEDIN -->
+  <div class="modal" id="linkedinModal" aria-hidden="true">
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="linkedinModalTitle">
+      <button class="modal__close" aria-label="Fermer" data-close>×</button>
+      <p class="modal__kicker">LinkedIn</p>
+      <h3 id="linkedinModalTitle" class="modal__name"><span class="serif">Steven Pichon</span></h3>
+      <p class="modal__title">Auteur &amp; Directeur artistique</p>
+      <p class="modal__bio">Co-auteur pour Xélito Beleck. Directeur artistique sur la chaîne Shorts d'Amixem. Lead sur « Peut-on réussir en France en 2026 ? » (Cube Network). Collaborateur de la Maison des Créateurs et de Victor Habchy.</p>
+      <a href="https://www.linkedin.com/in/steven-pichon-48a00a1bb/" target="_blank" rel="noopener" class="btn btn--primary">Voir le profil complet sur LinkedIn →</a>
+    </div>
+  </div>
 
   <script src="script.js" defer></script>
 </body>
