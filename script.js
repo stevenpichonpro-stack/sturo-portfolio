@@ -27,6 +27,9 @@ const PROJECTS = {
       "4j5Up7_M9ik",
       "HaQ4qNunY3g",
       "T3qRaRWVrE4",
+      "kfRCGWzNfQ4",
+      "ofg4xTxQTZA",
+      "gdF_RE1X5j8",
     ],
   },
   cube: {
