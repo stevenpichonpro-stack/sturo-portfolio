@@ -1,109 +1,175 @@
-// =========================================================
-// Sturo — Portfolio script
-// =========================================================
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sturo ‚Äî Auteur & Directeur Artistique</title>
+  <meta name="description" content="Sturo (Steven Pichon) ‚Äî Auteur et directeur artistique. La meilleure id√©e n'est pas encore n√©e." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
 
-// ---------- Année du footer ----------
-document.getElementById("year").textContent = new Date().getFullYear();
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="#top" class="nav__logo">Sturo</a>
+    <ul class="nav__links">
+      <li><a href="#work">R√©alisations</a></li>
+      <li><a href="#about">√Ä propos</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-// ---------- Données des projets (vidéos à afficher) ----------
-// Note : on pourra ré-affecter les shorts aux bons créateurs après confirmation.
-const PROJECTS = {
-  xelito: {
-    layout: "shorts",
-    videos: [
-      "QLDkMZlmUog",
-      "IXbsbsZowE8",
-      "_rLHgYwtzx0",
-      "3QkCtGP0CSI",
-      "EBAz83E8R_8",
-      "-C2YfX6dmls",
-      "-bLgnbMVZLQ",
-    ],
-  },
-  amixem: {
-    layout: "shorts",
-    videos: [
-      "xeMlb-0vF1s",
-      "4j5Up7_M9ik",
-      "HaQ4qNunY3g",
-      "T3qRaRWVrE4",
-      "kfRCGWzNfQ4",
-      "ofg4xTxQTZA",
-      "gdF_RE1X5j8",
-    ],
-  },
-  cube: {
-    layout: "long",
-    videos: ["3UBCl-jMl0E"],
-  },
-};
+  <!-- HERO -->
+  <header id="top" class="hero">
+    <p class="hero__kicker">Sturo ‚Äî Steven Pichon</p>
+    <h1 class="hero__title">
+      <span class="hero__serif">La meilleure id√©e</span><br />
+      <span class="hero__serif hero__serif--italic">n'est pas encore n√©e.</span>
+    </h1>
+    <p class="hero__sub">Auteur &amp; Directeur artistique. Je souhaite cr√©er les plus grands contenus sur YouTube en France.</p>
+    <div class="hero__cta">
+      <a href="#work" class="btn btn--primary">Voir les r√©alisations</a>
+      <a href="#contact" class="btn btn--ghost">Me contacter</a>
+    </div>
+  </header>
 
-// ---------- Injection des embeds YouTube ----------
-function buildEmbeds() {
-  Object.entries(PROJECTS).forEach(([key, cfg]) => {
-    const mount = document.querySelector(`[data-project="${key}"]`);
-    if (!mount) return;
-    if (cfg.layout === "long") mount.dataset.layout = "long";
+  <!-- WORK -->
+  <section id="work" class="work">
+    <p class="section__label">R√©alisations</p>
 
-    cfg.videos.forEach((id) => {
-      const wrap = document.createElement("div");
-      wrap.className = cfg.layout === "long" ? "embed-long" : "embed-short";
+    <div class="projects">
 
-      const iframe = document.createElement("iframe");
-      iframe.src = `https://www.youtube.com/embed/${id}?rel=0`;
-      iframe.title = `Vidéo YouTube — ${key}`;
-      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-      iframe.loading = "lazy";
-      iframe.referrerPolicy = "strict-origin-when-cross-origin";
-      iframe.allowFullscreen = true;
+      <!-- AMIXEM -->
+      <article class="project">
+        <header class="project__head">
+          <h3 class="project__name">
+            <img class="project__logo" src="amixem.jpg" alt="" />
+            <span class="serif">Amixem</span>
+          </h3>
+          <div class="project__meta">
+            <p class="project__role">Direction artistique ¬∑ YouTube Shorts ¬∑ 8 mois</p>
+          </div>
+        </header>
+        <div class="project__embeds" data-project="amixem">
+          <!-- Embeds inject√©s par script.js -->
+        </div>
+      </article>
 
-      wrap.appendChild(iframe);
-      mount.appendChild(wrap);
-    });
-  });
-}
-buildEmbeds();
+      <!-- XELITO BELEC -->
+      <article class="project">
+        <header class="project__head">
+          <h3 class="project__name">
+            <img class="project__logo" src="xelito.jpg" alt="" />
+            <span class="serif">X√©lito Beleck</span>
+          </h3>
+          <div class="project__meta">
+            <p class="project__role">Co-auteur</p>
+          </div>
+        </header>
+        <div class="project__embeds" data-project="xelito">
+        </div>
+      </article>
 
-// ---------- Modale LinkedIn ----------
-const linkedinModal = document.getElementById("linkedinModal");
-const openLinkedinBtn = document.getElementById("openLinkedin");
+      <!-- CUBE NETWORK -->
+      <article class="project">
+        <header class="project__head">
+          <h3 class="project__name">
+            <img class="project__logo" src="cube.jpg" alt="" />
+            <span class="serif">Cube Network</span>
+          </h3>
+          <div class="project__meta">
+            <p class="project__role">Lead projet sur ¬´ Peut-on r√©ussir en France en 2026 ? ¬ª</p>
+            <p class="project__scope">Direction artistique</p>
+          </div>
+        </header>
+        <div class="project__embeds" data-project="cube">
+        </div>
+      </article>
 
-function openModal() {
-  linkedinModal.classList.add("is-open");
-  linkedinModal.setAttribute("aria-hidden", "false");
-  document.body.classList.add("modal-open");
-}
-function closeModal() {
-  linkedinModal.classList.remove("is-open");
-  linkedinModal.setAttribute("aria-hidden", "true");
-  document.body.classList.remove("modal-open");
-}
+      <!-- MAISON DES CREATEURS -->
+      <article class="project">
+        <header class="project__head">
+          <h3 class="project__name">
+            <img class="project__logo" src="maison.jpg" alt="" />
+            <span class="serif">Maison des Cr√©ateurs</span>
+          </h3>
+          <div class="project__meta">
+            <p class="project__role">Collaborateur</p>
+          </div>
+        </header>
+      </article>
 
-if (openLinkedinBtn && linkedinModal) {
-  openLinkedinBtn.addEventListener("click", openModal);
-  linkedinModal.querySelectorAll("[data-close]").forEach((el) => {
-    el.addEventListener("click", closeModal);
-  });
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && linkedinModal.classList.contains("is-open")) {
-      closeModal();
-    }
-  });
-}
+      <!-- VICTOR HABCHY -->
+      <article class="project">
+        <header class="project__head">
+          <h3 class="project__name">
+            <img class="project__logo" src="victor.jpg" alt="" />
+            <span class="serif">Victor Habchy</span>
+          </h3>
+          <div class="project__meta">
+            <p class="project__role">Collaborateur</p>
+          </div>
+        </header>
+      </article>
 
-// ---------- Reveal on scroll ----------
-const revealTargets = document.querySelectorAll(".hero__title, .hero__sub, .hero__cta, .about__title, .about__grid, .work__title, .project, .contact__title, .contact__sub, .contact__links");
-revealTargets.forEach((el) => el.classList.add("reveal"));
+    </div>
+  </section>
 
-const io = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        io.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.12 }
-);
-revealTargets.forEach((el) => io.observe(el));
+  <!-- ABOUT -->
+  <section id="about" class="about">
+    <p class="section__label">√Ä propos</p>
+    <div class="about__top">
+      <div class="about__photo">
+        <img src="steven.jpg" alt="Steven Pichon" />
+      </div>
+      <h2 class="about__title">
+        <span class="serif">Laisser quelque chose</span> √† ceux qui regardent.
+      </h2>
+    </div>
+    <div class="about__grid">
+      <div class="about__col">
+        <p>Un rire, une √©motion, une id√©e qu'on n'avait pas avant. C'est ce que j'essaie de transmettre √† travers les contenus que je cr√©e ou auxquels je participe. Qu'on en ressorte grandi, avec quelque chose de positif.</p>
+      </div>
+      <div class="about__col">
+        <p>Je cherche des id√©es en permanence. J'en note entre dix et cent par jour, pour arriver aux meilleures vid√©os possibles.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <p class="section__label">Contact</p>
+    <h2 class="contact__title">
+      <span class="serif">Un projet,</span> une id√©e, une envie ?
+    </h2>
+    <p class="contact__sub">La meilleure id√©e n'est pas encore n√©e. On peut commencer par en parler.</p>
+    <div class="contact__links">
+      <a href="mailto:stevenpichonpro@gmail.com" class="btn btn--primary">stevenpichonpro@gmail.com</a>
+      <button type="button" class="btn btn--ghost" id="openLinkedin" aria-haspopup="dialog" aria-controls="linkedinModal">LinkedIn</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>¬© <span id="year"></span> Steven Pichon ‚Äî Sturo.</p>
+  </footer>
+
+  <!-- MODAL LINKEDIN -->
+  <div class="modal" id="linkedinModal" aria-hidden="true">
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="linkedinModalTitle">
+      <button class="modal__close" aria-label="Fermer" data-close>√ó</button>
+      <p class="modal__kicker">LinkedIn</p>
+      <h3 id="linkedinModalTitle" class="modal__name"><span class="serif">Steven Pichon</span></h3>
+      <p class="modal__title">Auteur &amp; Directeur artistique</p>
+      <p class="modal__bio">Co-auteur pour X√©lito Beleck. Directeur artistique sur la cha√Æne Shorts d'Amixem. Lead sur ¬´ Peut-on r√©ussir en France en 2026 ? ¬ª (Cube Network). Collaborateur de la Maison des Cr√©ateurs et de Victor Habchy.</p>
+      <a href="https://www.linkedin.com/in/steven-pichon-48a00a1bb/" target="_blank" rel="noopener" class="btn btn--primary">Voir le profil complet sur LinkedIn ‚Üí</a>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
